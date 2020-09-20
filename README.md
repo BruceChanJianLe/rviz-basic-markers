@@ -71,6 +71,16 @@ marker_msg_.scale.z = 1.0;
 marker_msg_.type = visualization_msgs::Marker::CUBE;
 ```
 
+### SPHERE
+
+```cpp
+marker_msg_.scale.x = 1.0;
+marker_msg_.scale.y = 1.0;
+marker_msg_.scale.z = 1.0;
+// Set marker shape
+marker_msg_.type = visualization_msgs::Marker::SPHERE;
+```
+
 ## Clear Marker Message
 
 Remember to clear marker msg before using it for the second time as remnants may cause unwanted behaviour.  
