@@ -299,6 +299,7 @@ unsigned int marker_node::marker_type_request()
             point_.x = 1.0, point_.y = 1.0, point_.z = 0.0;
             marker_msg_.points.emplace_back(point_);
             marker_shape_ = visualization_msgs::Marker::TRIANGLE_LIST;
+            break;
         }
         case visualization_msgs::Marker::TRIANGLE_LIST:
         {
