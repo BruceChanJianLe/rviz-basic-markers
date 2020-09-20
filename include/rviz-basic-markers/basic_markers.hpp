@@ -19,7 +19,7 @@ class marker_node
         unsigned int rate_;
         visualization_msgs::Marker marker_msg_;
         unsigned int marker_shape_ = visualization_msgs::Marker::CUBE;
-        std::vector<geometry_msgs::Point> line_points_;
+        geometry_msgs::Point point_;
 
         // Private function
         void publish_markers();

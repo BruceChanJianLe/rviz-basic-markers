@@ -41,6 +41,8 @@ void marker_node::start()
 
 void marker_node::publish_markers()
 {
+    // Clear up marker msg
+    marker_msg_.points.clear();     // Particulary for points and scale as usages differ from markers to markers
     // Set relative frame and time
     marker_msg_.header.frame_id = "map";
     marker_msg_.header.stamp = ros::Time::now();
@@ -68,6 +70,15 @@ void marker_node::publish_markers()
     // Cycle between different shapes
     switch (marker_shape_)
     {
+        case visualization_msgs::Marker::ARROW:
+        {
+            // Set marker scale -- 1x1x1 here means 1m on each side
+            marker_msg_.scale.x = 1.0;
+            marker_msg_.scale.y = 1.0;
+            marker_msg_.scale.z = 1.0;
+            marker_shape_ = visualization_msgs::Marker::CUBE;
+            break;
+        }
         case visualization_msgs::Marker::CUBE:
             // Set marker scale -- 1x1x1 here means 1m on each side
             marker_msg_.scale.x = 1.0;
@@ -75,80 +86,61 @@ void marker_node::publish_markers()
             marker_msg_.scale.z = 1.0;
             marker_shape_ = visualization_msgs::Marker::SPHERE;
             break;
-        // case visualization_msgs::Marker::SPHERE:
-        // {
-        //     // Set marker scale
-        //     marker_msg_.scale.x = 1.0;      // Shaft diameter
-        //     marker_msg_.scale.y = 0.1;      // Head diameter
-        //     marker_msg_.scale.z = 0.1;      // Head length
-        //     // Set start and end point at(0) and at(1)
-        //     marker_msg_.points.at(0).x = 1.0;
-        //     marker_msg_.points.at(0).y = 0.0;
-        //     marker_msg_.points.at(0).z = 0.0;
-        //     marker_msg_.points.at(1).x = 1.0;
-        //     marker_msg_.points.at(1).y = 0.0;
-        //     marker_msg_.points.at(1).z = 0.0;
-        //     marker_shape_ = visualization_msgs::Marker::ARROW;
-        //     break;
-        // }
-        // case visualization_msgs::Marker::ARROW:
-        // {
-        //     // Set marker scale -- 1x1x1 here means 1m on each side
-        //     marker_msg_.scale.x = 1.0;
-        //     marker_msg_.scale.y = 1.0;
-        //     marker_msg_.scale.z = 1.0;
-        //     marker_shape_ = visualization_msgs::Marker::CYLINDER;
-        //     break;
-        // }
-        // case visualization_msgs::Marker::CYLINDER:
-        // {
-        //     // Set marker scale
-        //     marker_msg_.scale.x = 0.3;      // Width of line segments
-        //     marker_msg_.scale.y = 0.0;      // Not used
-        //     marker_msg_.scale.z = 0.0;      // Not used
-        //     // Instantiate line points
-        //     geometry_msgs::Point point;
-        //     point.x = 0.0, point.y = -2.5, point.z = 0.0;
-        //     line_points_.emplace_back(point);
-        //     point.x = 0.0, point.y = -1.5, point.z = 0.0;
-        //     line_points_.emplace_back(point);
-        //     point.x = 0.0, point.y = -0.5, point.z = 0.0;
-        //     line_points_.emplace_back(point);
-        //     point.x = 0.0, point.y = 0.5, point.z = 0.0;
-        //     line_points_.emplace_back(point);
-        //     point.x = 0.0, point.y = 1.5, point.z = 0.0;
-        //     line_points_.emplace_back(point);
-        //     point.x = 0.0, point.y = 2.5, point.z = 0.0;
-        //     // Set the lines 0-1, 1-2, 2-3, ...
-        //     line_points_.emplace_back(point);
-        //     marker_msg_.points = line_points_;
-        //     marker_shape_ = visualization_msgs::Marker::LINE_LIST;
-        //     break;
-        // }
-        // case visualization_msgs::Marker::LINE_LIST:
-        // {
-        //     // Set marker scale
-        //     marker_msg_.scale.x = 0.3;
-        //     marker_msg_.scale.y = 0.3;
-        //     marker_msg_.scale.z = 0.3;
-        //     // Instantiate line points
-        //     geometry_msgs::Point point;
-        //     point.x = 0.0, point.y = -2.5, point.z = 0.0;
-        //     line_points_.emplace_back(point);
-        //     point.x = 0.0, point.y = -1.5, point.z = 0.0;
-        //     line_points_.emplace_back(point);
-        //     point.x = 0.0, point.y = -0.5, point.z = 0.0;
-        //     line_points_.emplace_back(point);
-        //     point.x = 0.0, point.y = 0.5, point.z = 0.0;
-        //     line_points_.emplace_back(point);
-        //     point.x = 0.0, point.y = 1.5, point.z = 0.0;
-        //     line_points_.emplace_back(point);
-        //     point.x = 0.0, point.y = 2.5, point.z = 0.0;
-        //     // Set each position of cube
-        //     marker_msg_.points = line_points_;
-        //     marker_shape_ = visualization_msgs::Marker::CUBE_LIST;
-        //     break;
-        // }
+        case visualization_msgs::Marker::SPHERE:
+        {
+            // Set marker scale
+            marker_msg_.scale.x = 1.0;      // Diameter in x direction
+            marker_msg_.scale.y = 1.0;      // Diameter in y direction
+            marker_msg_.scale.z = 1.0;      // Cylinder height
+            marker_shape_ = visualization_msgs::Marker::CYLINDER;
+            break;
+        }
+        case visualization_msgs::Marker::CYLINDER:
+        {
+            // Set marker scale
+            marker_msg_.scale.x = 0.1;      // Width of line segments
+            marker_msg_.scale.y = 0.0;      // Not used
+            marker_msg_.scale.z = 0.0;      // Not used
+            // Set the lines 0-1, 1-2, 2-3, ...
+            point_.x = 0.0, point_.y = -2.5, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.5, point_.y = -1.5, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.0, point_.y = -0.5, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.5, point_.y = 0.5, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.0, point_.y = 1.5, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.5, point_.y = 2.5, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            marker_shape_ = visualization_msgs::Marker::LINE_STRIP;
+            break;
+        }
+        case visualization_msgs::Marker::LINE_STRIP:
+        {
+            // Set marker scale
+            marker_msg_.scale.x = 0.3;
+            marker_msg_.scale.y = 0.3;
+            marker_msg_.scale.z = 0.3;
+            // Instantiate line points
+            geometry_msgs::Point point;
+            point.x = 0.0, point.y = -2.5, point.z = 0.0;
+            line_points_.emplace_back(point);
+            point.x = 0.0, point.y = -1.5, point.z = 0.0;
+            line_points_.emplace_back(point);
+            point.x = 0.0, point.y = -0.5, point.z = 0.0;
+            line_points_.emplace_back(point);
+            point.x = 0.0, point.y = 0.5, point.z = 0.0;
+            line_points_.emplace_back(point);
+            point.x = 0.0, point.y = 1.5, point.z = 0.0;
+            line_points_.emplace_back(point);
+            point.x = 0.0, point.y = 2.5, point.z = 0.0;
+            // Set each position of cube
+            marker_msg_.points = line_points_;
+            marker_shape_ = visualization_msgs::Marker::CUBE_LIST;
+            break;
+        }
         // case visualization_msgs::Marker::CUBE_LIST:
         // {
         //     // Set marker scale
@@ -208,12 +200,24 @@ void marker_node::publish_markers()
         // }
         default:
         {
-            // Set marker scale -- 1x1x1 here means 1m on each side
-            marker_msg_.scale.x = 1.0;
-            marker_msg_.scale.y = 1.0;
-            marker_msg_.scale.z = 1.0;
-            marker_shape_ = visualization_msgs::Marker::CUBE;
-            break;
+            // Method 1 of defining an arrow
+            // Set marker scale
+            marker_msg_.scale.x = 0.1;      // Shaft diameter
+            marker_msg_.scale.y = 0.2;      // Head diameter
+            marker_msg_.scale.z = 0.1;      // Head length
+            // Set start and end point at(0) and at(1)
+            point_.x = 0.0, point_.y = 0.0, point_.z = 0.0;
+            marker_msg_.points.push_back(point_);
+            point_.x = 1.0, point_.y = 1.0, point_.z = 0.0;
+            marker_msg_.points.push_back(point_);
+            marker_shape_ = visualization_msgs::Marker::ARROW;
+
+            // Method 2 of defining an arrow
+            // Set marker scale
+            // marker_msg_.scale.x = 1.0;      // Arrow length
+            // marker_msg_.scale.y = 0.1;      // Arrow width
+            // marker_msg_.scale.z = 0.1;      // Arrow height
+            // marker_shape_ = visualization_msgs::Marker::ARROW;
         }
     }
 
