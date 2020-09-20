@@ -213,15 +213,15 @@ void marker_node::publish_markers()
             marker_shape_ = visualization_msgs::Marker::SPHERE_LIST;
             break;
         }
-        // case visualization_msgs::Marker::POINTS:
-        // {
-        //     // Set marker scale -- 1x1x1 here means 1m on each side
-        //     marker_msg_.scale.x = 1.0;
-        //     marker_msg_.scale.y = 1.0;
-        //     marker_msg_.scale.z = 1.0;
-        //     marker_shape_ = visualization_msgs::Marker::CUBE;
-        //     break;
-        // }
+        case visualization_msgs::Marker::POINTS:
+        {
+            // Set marker scale -- 1x1x1 here means 1m on each side
+            marker_msg_.scale.x = 1.0;
+            marker_msg_.scale.y = 1.0;
+            marker_msg_.scale.z = 1.0;
+            marker_shape_ = visualization_msgs::Marker::CUBE;
+            break;
+        }
         default:
         {
             // Method 1 of defining an arrow

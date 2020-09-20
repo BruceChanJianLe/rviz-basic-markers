@@ -95,6 +95,7 @@ marker_msg_.type = visualization_msgs::Marker::CYLINDER;
 
 ### LINE_STRIP (4)
 
+Note that pose is still used (the points in the line will be transformed by them), and the lines will be correct relative to the frame id specified in the header.  
 ```cpp
 // Set marker scale
 marker_msg_.scale.x = 0.1;      // Width of line segments
@@ -119,6 +120,7 @@ marker_msg_.type = visualization_msgs::Marker::LINE_STRIP;
 
 ### LINE_LIST
 
+Note that pose is still used (the points in the line will be transformed by them), and the lines will be correct relative to the frame id specified in the header.  
 ```cpp
 // Set marker scale
 marker_msg_.scale.x = 0.1;      // Width of line segments
@@ -155,6 +157,7 @@ marker_msg_.type = visualization_msgs::Marker::LINE_LIST;
 
 ### CUBE_LIST (6)
 
+Pose is not used.  
 ```cpp
 // Set marker scale
 marker_msg_.scale.x = 0.1;
@@ -191,6 +194,7 @@ marker_msg_.type = visualization_msgs::Marker::CUBE_LIST;
 
 ### SPHERE_LIST (7)
 
+Note that pose is still used (the points in the line will be transformed by them), and the lines will be correct relative to the frame id specified in the header.  
 ```cpp
 // Set marker scale
 marker_msg_.scale.x = 0.2;
