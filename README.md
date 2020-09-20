@@ -261,6 +261,7 @@ marker_msg_.type = visualization_msgs::Marker::POINTS;
 
 ### TEXT_VIEW_FACING (9)
 
+Only scale.z is used. scale.z specifies the height of an uppercase "A".  
 ```cpp
 // Set marker scale
 marker_msg_.scale.x = 0.0;      // Not used
