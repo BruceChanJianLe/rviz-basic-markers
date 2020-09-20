@@ -297,7 +297,6 @@ marker_msg_.type = visualization_msgs::Marker::MESH_RESOURCE;
 
 ### TRIANGLE_LIST (11)
 
-Could not get triangle list to work.  
 ```cpp
 // Set marker scale
 marker_msg_.scale.x = 1.0;
