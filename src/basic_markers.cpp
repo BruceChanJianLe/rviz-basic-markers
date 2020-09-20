@@ -157,7 +157,7 @@ void marker_node::publish_markers()
             marker_msg_.scale.x = 0.1;
             marker_msg_.scale.y = 0.1;
             marker_msg_.scale.z = 0.1;
-            // Set each coordinate for each cube
+            // Set each position for each cube
             point_.x = 0.0, point_.y = -2.5, point_.z = 0.0;
             marker_msg_.points.emplace_back(point_);
             point_.x = 0.0, point_.y = -2.5, point_.z = 1.0;
@@ -185,30 +185,34 @@ void marker_node::publish_markers()
             marker_shape_ = visualization_msgs::Marker::CUBE_LIST;
             break;
         }
-        // case visualization_msgs::Marker::SPHERE_LIST:
-        // {
-        //     // Set marker scale
-        //     marker_msg_.scale.x = 0.2;      // Width of line segments
-        //     marker_msg_.scale.y = 0.2;      // Height of line segments
-        //     marker_msg_.scale.z = 0.0;      // Not used
-        //     // Instantiate line points
-        //     geometry_msgs::Point point;
-        //     point.x = 0.0, point.y = -2.5, point.z = 0.0;
-        //     line_points_.emplace_back(point);
-        //     point.x = 0.0, point.y = -1.5, point.z = 0.0;
-        //     line_points_.emplace_back(point);
-        //     point.x = 0.0, point.y = -0.5, point.z = 0.0;
-        //     line_points_.emplace_back(point);
-        //     point.x = 0.0, point.y = 0.5, point.z = 0.0;
-        //     line_points_.emplace_back(point);
-        //     point.x = 0.0, point.y = 1.5, point.z = 0.0;
-        //     line_points_.emplace_back(point);
-        //     point.x = 0.0, point.y = 2.5, point.z = 0.0;
-        //     // Set the lines 0-1, 1-2, 2-3, ...
-        //     marker_msg_.points = line_points_;
-        //     marker_shape_ = visualization_msgs::Marker::POINTS;
-        //     break;
-        // }
+        case visualization_msgs::Marker::CUBE_LIST:
+        {
+            // Set marker scale
+            marker_msg_.scale.x = 0.2;
+            marker_msg_.scale.y = 0.2;
+            marker_msg_.scale.z = 0.2;
+            // Set each position for each sphere
+            point_.x = 0.0, point_.y = 0.0, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 1.0, point_.y = 0.0, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 1.0, point_.y = 1.0, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.0, point_.y = 1.0, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 1.0, point_.y = -1.0, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = -1.0, point_.y = 0.0, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = -1.0, point_.y = -1.0, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.0, point_.y = -1.0, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = -1.0, point_.y = 1.0, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            marker_shape_ = visualization_msgs::Marker::SPHERE_LIST;
+            break;
+        }
         // case visualization_msgs::Marker::POINTS:
         // {
         //     // Set marker scale -- 1x1x1 here means 1m on each side
