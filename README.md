@@ -295,6 +295,24 @@ marker_msg_.mesh_resource = "package://rviz-basic-markers/meshes/elegant_male.da
 marker_msg_.type = visualization_msgs::Marker::MESH_RESOURCE;
 ```
 
+### TRIANGLE_LIST (11)
+
+Could not get triangle list to work.  
+```cpp
+// Set marker scale
+marker_msg_.scale.x = 1.0;
+marker_msg_.scale.y = 1.0;
+marker_msg_.scale.z = 1.0;
+// Set the lines  0-1-2, 3-4-5, ...
+point_.x = 0.0, point_.y = 0.0, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 1.0, point_.y = 0.0, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 1.0, point_.y = 1.0, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+// Set marker shape
+marker_msg_.type = visualization_msgs::Marker::TRIANGLE_LIST;
+```
 ## Clear Marker Message
 
 Remember to clear marker msg before using it for the second time as remnants may cause unwanted behaviour.  
