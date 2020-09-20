@@ -213,13 +213,38 @@ void marker_node::publish_markers()
             marker_shape_ = visualization_msgs::Marker::SPHERE_LIST;
             break;
         }
-        case visualization_msgs::Marker::POINTS:
+        case visualization_msgs::Marker::SPHERE_LIST:
         {
-            // Set marker scale -- 1x1x1 here means 1m on each side
-            marker_msg_.scale.x = 1.0;
-            marker_msg_.scale.y = 1.0;
-            marker_msg_.scale.z = 1.0;
-            marker_shape_ = visualization_msgs::Marker::CUBE;
+            // Set marker scale
+            marker_msg_.scale.x = 0.1;      // Point width
+            marker_msg_.scale.y = 0.1;      // Point height
+            marker_msg_.scale.z = 0.0;      // Not used
+            // Set each position for each point
+            point_.x = 0.0, point_.y = -2.5, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.0, point_.y = -2.5, point_.z = 1.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.0, point_.y = -1.5, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.0, point_.y = -1.5, point_.z = -1.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.0, point_.y = -0.5, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.0, point_.y = -0.5, point_.z = 1.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.0, point_.y = 0.5, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.0, point_.y = 0.5, point_.z = -1.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.0, point_.y = 1.5, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.0, point_.y = 1.5, point_.z = 1.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.0, point_.y = 2.5, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 0.0, point_.y = 2.5, point_.z = -1.0;
+            marker_msg_.points.emplace_back(point_);
+            marker_shape_ = visualization_msgs::Marker::POINTS;
             break;
         }
         default:
