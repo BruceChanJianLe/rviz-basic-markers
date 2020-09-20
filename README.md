@@ -3,6 +3,17 @@
 This repository demonstarte the usage of rviz basic markers. This ROS package will display all the available markers including your own mesh in RViz. For more information about markers please visit this [page](http://wiki.ros.org/rviz/DisplayTypes/Marker).  
 
 
+## Clear Marker Message
+
+Remember to clear marker msg before using it for the second time as remnants may cause unwanted behaviour.  
+```cpp
+// Before use marker msg again, perform clean up
+marker_msg_.points.clear();
+marker_msg_.scale.x = 0.0;
+marker_msg_.scale.y = 0.0;
+marker_msg_.scale.z = 0.0;
+```
+
 ## visualization_msgs/Marker Message
 
 ```yaml
