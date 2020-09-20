@@ -247,6 +247,16 @@ void marker_node::publish_markers()
             marker_shape_ = visualization_msgs::Marker::POINTS;
             break;
         }
+        case visualization_msgs::Marker::POINTS:
+        {
+            // Set marker scale
+            marker_msg_.scale.x = 0.0;      // Not used
+            marker_msg_.scale.y = 0.0;      // Not used
+            marker_msg_.scale.z = 0.5;      // Specifies the height of an uppercase "A"
+            marker_msg_.text = "This is a demo!";
+            marker_shape_ = visualization_msgs::Marker::TEXT_VIEW_FACING;
+            break;
+        }
         default:
         {
             // Method 1 of defining an arrow
