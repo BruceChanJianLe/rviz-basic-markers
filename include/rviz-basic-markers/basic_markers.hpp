@@ -3,8 +3,10 @@
 
 #include <ros/ros.h>
 #include <visualization_msgs/Marker.h>
+#include <geometry_msgs/Point.h>
 
 #include <string>
+#include <vector>
 
 class marker_node
 {
@@ -17,6 +19,7 @@ class marker_node
         unsigned int rate_;
         visualization_msgs::Marker marker_msg_;
         unsigned int marker_shape_ = visualization_msgs::Marker::CUBE;
+        std::vector<geometry_msgs::Point> line_points_;
 
         // Private function
         void publish_markers();
