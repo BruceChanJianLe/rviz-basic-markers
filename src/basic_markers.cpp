@@ -267,6 +267,17 @@ unsigned int marker_node::marker_type_request()
             marker_shape_ = visualization_msgs::Marker::TEXT_VIEW_FACING;
             break;
         }
+        case visualization_msgs::Marker::TEXT_VIEW_FACING:
+        {
+            // Set marker scale
+            marker_msg_.scale.x = 1.0;
+            marker_msg_.scale.y = 1.0;
+            marker_msg_.scale.z = 1.0;
+            // Provide path to mesh
+            marker_msg_.mesh_resource = "package://rviz-basic-markers/meshes/elegant_male.dae";
+            marker_shape_ = visualization_msgs::Marker::MESH_RESOURCE;
+            break;
+        }
         default:
         {
             // Method 1 of defining an arrow
