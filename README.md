@@ -276,16 +276,25 @@ marker_msg_.type = visualization_msgs::Marker::TEXT_VIEW_FACING;
 
 Remeber to source your workspace to for Rviz to find the dae file.  
 Scale on a mesh is relative. A scale of (1.0, 1.0, 1.0) means the mesh will display as the exact size specified in the mesh file. A scale of (1.0, 1.0, 2.0) means the mesh will show up twice as tall, but the same width/depth.  
+Note that sometimes the meshes original color may not be ideal, hence, you may want to set your own color.  
 ```cpp
 // Set marker scale
 marker_msg_.scale.x = 1.0;
 marker_msg_.scale.y = 1.0;
 marker_msg_.scale.z = 1.0;
+// Set meshes color to true
+marker_msg_.mesh_use_embedded_materials = true;
+// Unset given color
+marker_msg_.color.r = 0;
+marker_msg_.color.g = 0;
+marker_msg_.color.b = 0;
+marker_msg_.color.a = 0;
 // Provide path to mesh
 marker_msg_.mesh_resource = "package://rviz-basic-markers/meshes/elegant_male.dae";
 // Set marker shape
 marker_msg_.type = visualization_msgs::Marker::MESH_RESOURCE;
 ```
+
 ## Clear Marker Message
 
 Remember to clear marker msg before using it for the second time as remnants may cause unwanted behaviour.  
