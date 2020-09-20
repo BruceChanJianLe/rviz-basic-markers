@@ -153,6 +153,42 @@ marker_msg_.points.emplace_back(point_);
 marker_msg_.type = visualization_msgs::Marker::LINE_LIST;
 ```
 
+### CUBE_LIST (6)
+
+```cpp
+// Set marker scale
+marker_msg_.scale.x = 0.1;
+marker_msg_.scale.y = 0.1;
+marker_msg_.scale.z = 0.1;
+// Set each position for each cube
+point_.x = 0.0, point_.y = -2.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = -2.5, point_.z = 1.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = -1.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = -1.5, point_.z = -1.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = -0.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = -0.5, point_.z = 1.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 0.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 0.5, point_.z = -1.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 1.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 1.5, point_.z = 1.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 2.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 2.5, point_.z = -1.0;
+marker_msg_.points.emplace_back(point_);
+// Set marker shape
+marker_msg_.type = visualization_msgs::Marker::CUBE_LIST;
+```
+
 ## Clear Marker Message
 
 Remember to clear marker msg before using it for the second time as remnants may cause unwanted behaviour.  
