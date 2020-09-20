@@ -223,6 +223,42 @@ marker_msg_.points.emplace_back(point_);
 marker_msg_.type = visualization_msgs::Marker::SPHERE_LIST;
 ```
 
+### POINTS (8)
+
+```cpp
+// Set marker scale
+marker_msg_.scale.x = 0.1;      // Point width
+marker_msg_.scale.y = 0.1;      // Point height
+marker_msg_.scale.z = 0.0;      // Not used
+// Set each position for each point
+point_.x = 0.0, point_.y = -2.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = -2.5, point_.z = 1.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = -1.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = -1.5, point_.z = -1.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = -0.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = -0.5, point_.z = 1.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 0.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 0.5, point_.z = -1.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 1.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 1.5, point_.z = 1.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 2.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 2.5, point_.z = -1.0;
+marker_msg_.points.emplace_back(point_);
+// Set marker shape
+marker_msg_.type = visualization_msgs::Marker::POINTS;
+```
+
 ## Clear Marker Message
 
 Remember to clear marker msg before using it for the second time as remnants may cause unwanted behaviour.  
