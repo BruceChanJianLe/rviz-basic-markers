@@ -117,6 +117,42 @@ marker_msg_.points.emplace_back(point_);
 marker_msg_.type = visualization_msgs::Marker::LINE_STRIP;
 ```
 
+### LINE_LIST
+
+```cpp
+// Set marker scale
+marker_msg_.scale.x = 0.1;      // Width of line segments
+marker_msg_.scale.y = 0.0;      // Not used
+marker_msg_.scale.z = 0.0;      // Not used
+// Set the lines 0-1, 2-3, 4-5, ...
+point_.x = 0.0, point_.y = -2.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = -2.5, point_.z = 1.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = -1.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = -1.5, point_.z = -1.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = -0.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = -0.5, point_.z = 1.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 0.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 0.5, point_.z = -1.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 1.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 1.5, point_.z = 1.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 2.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 2.5, point_.z = -1.0;
+marker_msg_.points.emplace_back(point_);
+// Set marker shape
+marker_msg_.type = visualization_msgs::Marker::LINE_LIST;
+```
+
 ## Clear Marker Message
 
 Remember to clear marker msg before using it for the second time as remnants may cause unwanted behaviour.  
