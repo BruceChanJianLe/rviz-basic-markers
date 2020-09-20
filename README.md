@@ -259,6 +259,18 @@ marker_msg_.points.emplace_back(point_);
 marker_msg_.type = visualization_msgs::Marker::POINTS;
 ```
 
+### TEXT_VIEW_FACING (9)
+
+```cpp
+// Set marker scale
+marker_msg_.scale.x = 0.0;      // Not used
+marker_msg_.scale.y = 0.0;      // Not used
+marker_msg_.scale.z = 0.5;      // Specifies the height of an uppercase "A"
+marker_msg_.text = "This is a demo!";
+// Set marker shape
+marker_msg_.type = visualization_msgs::Marker::TEXT_VIEW_FACING;
+```
+
 ## Clear Marker Message
 
 Remember to clear marker msg before using it for the second time as remnants may cause unwanted behaviour.  
