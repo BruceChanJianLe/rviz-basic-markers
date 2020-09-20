@@ -81,6 +81,18 @@ marker_msg_.scale.z = 1.0;
 marker_msg_.type = visualization_msgs::Marker::SPHERE;
 ```
 
+### CYLINDER
+
+By setting x and y scale differently you can get an ellipse.  
+```cpp
+// Set marker scale
+marker_msg_.scale.x = 1.0;      // Diameter in x direction
+marker_msg_.scale.y = 1.0;      // Diameter in y direction
+marker_msg_.scale.z = 1.0;      // Cylinder height
+// Set marker shape
+marker_msg_.type = visualization_msgs::Marker::CYLINDER;
+```
+
 ## Clear Marker Message
 
 Remember to clear marker msg before using it for the second time as remnants may cause unwanted behaviour.  
