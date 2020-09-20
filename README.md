@@ -33,7 +33,7 @@ marker_msg_.lifetime = ros::Duration();
 
 Parameters specifically for each Markers.  
 
-### Arrow
+### Arrow (0)
 
 ```cpp
 // Method 1 of defining an arrow
@@ -60,7 +60,7 @@ marker_msg_.scale.z = 0.1;      // Arrow height
 marker_msg_.type = visualization_msgs::Marker::ARROW;
 ```
 
-### Cube 
+### Cube (1)
 
 ```cpp
 // Set marker scale -- 1x1x1 here means 1m on each side
@@ -71,7 +71,7 @@ marker_msg_.scale.z = 1.0;
 marker_msg_.type = visualization_msgs::Marker::CUBE;
 ```
 
-### SPHERE
+### SPHERE (2)
 
 ```cpp
 marker_msg_.scale.x = 1.0;
@@ -81,7 +81,7 @@ marker_msg_.scale.z = 1.0;
 marker_msg_.type = visualization_msgs::Marker::SPHERE;
 ```
 
-### CYLINDER
+### CYLINDER (3)
 
 By setting x and y scale differently you can get an ellipse.  
 ```cpp
@@ -91,6 +91,30 @@ marker_msg_.scale.y = 1.0;      // Diameter in y direction
 marker_msg_.scale.z = 1.0;      // Cylinder height
 // Set marker shape
 marker_msg_.type = visualization_msgs::Marker::CYLINDER;
+```
+
+### LINE_STRIP (4)
+
+```cpp
+// Set marker scale
+marker_msg_.scale.x = 0.1;      // Width of line segments
+marker_msg_.scale.y = 0.0;      // Not used
+marker_msg_.scale.z = 0.0;      // Not used
+// Set the lines 0-1, 1-2, 2-3, ...
+point_.x = 0.0, point_.y = -2.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.5, point_.y = -1.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = -0.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.5, point_.y = 0.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.0, point_.y = 1.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+point_.x = 0.5, point_.y = 2.5, point_.z = 0.0;
+marker_msg_.points.emplace_back(point_);
+// Set marker shape
+marker_msg_.type = visualization_msgs::Marker::LINE_STRIP;
 ```
 
 ## Clear Marker Message
