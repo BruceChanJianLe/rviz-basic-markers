@@ -67,6 +67,16 @@ void marker_node::publish_markers()
     // Set marker reset time, timer reset when new one is received
     marker_msg_.lifetime = ros::Duration();
 
+    // Set marker shape
+    marker_msg_.type = marker_type_request();
+
+    // Publish marker msg
+    pub_.publish(marker_msg_);
+}
+
+
+unsigned int marker_node::marker_type_request()
+{
     // Cycle between different shapes
     switch (marker_shape_)
     {
@@ -280,9 +290,5 @@ void marker_node::publish_markers()
         }
     }
 
-    // Set marker shape
-    marker_msg_.type = marker_shape_;
-
-    // Publish marker msg
-    pub_.publish(marker_msg_);
+    return marker_shape_;
 }

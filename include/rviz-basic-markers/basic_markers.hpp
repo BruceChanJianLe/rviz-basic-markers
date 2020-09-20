@@ -23,6 +23,7 @@ class marker_node
 
         // Private function
         void publish_markers();
+        unsigned int marker_type_request();
 
     public:
         // Constructors and destructor
