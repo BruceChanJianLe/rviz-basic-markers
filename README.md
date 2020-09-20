@@ -2,6 +2,63 @@
 
 This repository demonstarte the usage of rviz basic markers. This ROS package will display all the available markers including your own mesh in RViz. For more information about markers please visit this [page](http://wiki.ros.org/rviz/DisplayTypes/Marker).  
 
+## Marker Usage
+
+Parameters that all markers share.  
+```cpp
+// Set relative frame and time
+marker_msg_.header.frame_id = "map";    // Learn more about it at tf
+marker_msg_.header.stamp = ros::Time::now();
+// Any marker sent with the same namespace and id will overwrite the old one
+marker_msg_.ns = "basic_shape";
+marker_msg_.id = 0;
+// Set marker action {ADD, DELETE, DELETEALL}
+marker_msg_.action = visualization_msgs::Marker::ADD;
+// Set the pose of marker
+marker_msg_.pose.position.x = 0;
+marker_msg_.pose.position.y = 0;
+marker_msg_.pose.position.z = 0;
+marker_msg_.pose.orientation.x = 0.0;
+marker_msg_.pose.orientation.y = 0.0;
+marker_msg_.pose.orientation.z = 0.0;
+marker_msg_.pose.orientation.w = 1.0;
+// Set marker color
+marker_msg_.color.r = 0.0f;
+marker_msg_.color.g = 1.0f;
+marker_msg_.color.b = 0.0f;
+marker_msg_.color.a = 1.0;
+// Set marker reset time, timer reset when new one is received
+marker_msg_.lifetime = ros::Duration();
+```
+
+Parameters specifically for each Markers.  
+
+### Arrow
+
+```cpp
+// Method 1 of defining an arrow
+// =============================
+// Set marker scale
+marker_msg_.scale.x = 0.1;      // Shaft diameter
+marker_msg_.scale.y = 0.2;      // Head diameter
+marker_msg_.scale.z = 0.1;      // Head length
+// Set start and end point at(0) and at(1)
+point_.x = 0.0, point_.y = 0.0, point_.z = 0.0;
+marker_msg_.points.push_back(point_);
+point_.x = 1.0, point_.y = 1.0, point_.z = 0.0;
+marker_msg_.points.push_back(point_);
+// Set marker shape
+marker_msg_.type = visualization_msgs::Marker::ARROW;
+
+// Method 2 of defining an arrow
+// =============================
+// Set marker scale
+marker_msg_.scale.x = 1.0;      // Arrow length
+marker_msg_.scale.y = 0.1;      // Arrow width
+marker_msg_.scale.z = 0.1;      // Arrow height
+// Set marker shape
+marker_msg_.type = visualization_msgs::Marker::ARROW;
+```
 
 ## Clear Marker Message
 
