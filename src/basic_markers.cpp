@@ -275,10 +275,32 @@ unsigned int marker_node::marker_type_request()
             marker_msg_.scale.z = 1.0;
             // Provide path to mesh
             marker_msg_.mesh_resource = "package://rviz-basic-markers/meshes/elegant_male.dae";
+            // Set meshes color to true
+            marker_msg_.mesh_use_embedded_materials = true;
+            // Unset given color
+            marker_msg_.color.r = 0;
+            marker_msg_.color.g = 0;
+            marker_msg_.color.b = 0;
+            marker_msg_.color.a = 0;
             marker_shape_ = visualization_msgs::Marker::MESH_RESOURCE;
             break;
         }
-        default:
+        case visualization_msgs::Marker::MESH_RESOURCE:
+        {
+            // Set marker scale
+            marker_msg_.scale.x = 1.0;
+            marker_msg_.scale.y = 1.0;
+            marker_msg_.scale.z = 1.0;
+            // Set the lines  0-1-2, 3-4-5, ...
+            point_.x = 0.0, point_.y = 0.0, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 1.0, point_.y = 0.0, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            point_.x = 1.0, point_.y = 1.0, point_.z = 0.0;
+            marker_msg_.points.emplace_back(point_);
+            marker_shape_ = visualization_msgs::Marker::TRIANGLE_LIST;
+        }
+        case visualization_msgs::Marker::TRIANGLE_LIST:
         {
             // Method 1 of defining an arrow
             // Set marker scale
