@@ -23,5 +23,5 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(basic_markers_node src/basic_markers_node src/basic_markers.cpp)
+add_executable(basic_markers_node src/basic_markers_node src/basic_markers.cpp src/markerBuilder.cpp)
 target_link_libraries(basic_markers_node ${catkin_LIBRARIES})
