@@ -2,6 +2,10 @@
 
 This repository demonstarte the usage of rviz basic markers. This ROS package will display all the available markers including your own mesh in RViz. For more information about markers please visit this [page](http://wiki.ros.org/rviz/DisplayTypes/Marker).  
 
+## Facet Builder Marker
+
+To use the facet builder marker class, just include `markerBuilder.hpp`, `markerBuilder.cpp` and `markerAttributes.hpp` and inherit from `markerBuilder` class will do.
+
 ## Marker Usage
 
 Parameters that all markers share.  
