@@ -10,10 +10,9 @@ class markerAttributes;
 
 class markerBuilder
 {
-private:
+public:
     visualization_msgs::Marker m_;
 
-protected:
     visualization_msgs::Marker & marker_;
     // Explicit constructor
     explicit markerBuilder(visualization_msgs::Marker & marker)
@@ -22,7 +21,6 @@ protected:
         ;
     }
 
-public:
     markerBuilder()
     :   marker_(m_)
     {
@@ -36,9 +34,7 @@ public:
     }
 
     // Builder facet
-    inline markerAttributes attrb();
-
-    friend class markerAttributes;
+    markerAttributes attrb();
 };
 
 
