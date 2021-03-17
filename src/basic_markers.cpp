@@ -1,4 +1,5 @@
 #include "rviz-basic-markers/basic_markers.hpp"
+#include "rviz-basic-markers/markerAttributes.hpp"
 
 
 marker_node::marker_node(const std::string & pub_name, int rate)
@@ -39,36 +40,23 @@ void marker_node::start()
 }
 
 
+markerBuilder marker_node::create()
+{
+    return markerBuilder(marker_msg_);
+}
+
+
 void marker_node::publish_markers()
 {
-    // Clear up marker msg
-    marker_msg_.points.clear();     // Particulary for points and scale as usages differ from markers to markers
-    // Set relative frame and time
-    marker_msg_.header.frame_id = "map";
-    marker_msg_.header.stamp = ros::Time::now();
-    // Any marker sent with the same namespace and id will overwrite the old one
-    marker_msg_.ns = "basic_shape";
-    marker_msg_.id = 0;
-    // Set marker action {ADD, DELETE, DELETEALL}
-    marker_msg_.action = visualization_msgs::Marker::ADD;
-    // Set the pose of marker
-    marker_msg_.pose.position.x = 0;
-    marker_msg_.pose.position.y = 0;
-    marker_msg_.pose.position.z = 0;
-    marker_msg_.pose.orientation.x = 0.0;
-    marker_msg_.pose.orientation.y = 0.0;
-    marker_msg_.pose.orientation.z = 0.0;
-    marker_msg_.pose.orientation.w = 1.0;
-    // Set marker color
-    marker_msg_.color.r = 0.0f;
-    marker_msg_.color.g = 1.0f;
-    marker_msg_.color.b = 0.0f;
-    marker_msg_.color.a = 1.0;
-    // Set marker reset time, timer reset when new one is received
-    marker_msg_.lifetime = ros::Duration();
-
-    // Set marker shape
-    marker_msg_.type = marker_type_request();
+    marker_msg_ = this->create().attrb()
+                  .points_clear()
+                  .frame_id("map").stamp(ros::Time::now()).ns("basic_shape").id(0)
+                  .action(visualization_msgs::Marker::ADD)
+                  .position_x(0.0).position_y(0.0).position_z(0.0)
+                  .orientation_x(0.0).orientation_y(0.0).orientation_z(0.0).orientation_w(1.0)
+                  .color_r(0.0f).color_g(1.0f).color_b(0.0f).color_a(1.0)
+                  .lifetime(ros::Duration())
+                  .type(marker_type_request());
 
     // Publish marker msg
     pub_.publish(marker_msg_);
