@@ -9,7 +9,7 @@
 #include <vector>
 
 #include "rviz-basic-markers/markerBuilder.hpp"
-#include "rviz-basic-markers/markerAttributes.hpp"
+
 
 class marker_node
 {
@@ -27,7 +27,6 @@ class marker_node
         // Private function
         void publish_markers();
         unsigned int marker_type_request();
-        markerBuilder marker_builder;
 
     public:
         // Constructors and destructor
@@ -37,6 +36,7 @@ class marker_node
 
         // Expose method
         void start();
+        markerBuilder create();
 };
 
 #endif
