@@ -4,6 +4,7 @@
 #include <visualization_msgs/Marker.h>
 #include <geometry_msgs/Point.h>
 
+#include "rviz-basic-markers/markerBuilder.hpp"
 
 
 class markerAttributes : public markerBuilder
