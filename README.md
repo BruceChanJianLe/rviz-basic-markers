@@ -2,6 +2,8 @@
 
 This repository demonstarte the usage of rviz basic markers. This ROS package will display all the available markers including your own mesh in RViz. For more information about markers please visit this [page](http://wiki.ros.org/rviz/DisplayTypes/Marker).  
 
+If you are interested in a faster way to create a marker, please checkout the the `facet-builder` for the marker wraper.
+
 ## Marker Usage
 
 Parameters that all markers share.  
