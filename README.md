@@ -7,7 +7,11 @@ This repository demonstarte the usage of rviz basic markers. This ROS package wi
 To use the facet builder marker class, just include `markerBuilder.hpp`, `markerBuilder.cpp` and `markerAttributes.hpp` and inherit from `markerBuilder` class will do.
 
 Step 1: Add `markerBuilder.cpp` into your `CMakeLists.txt`.  
-Step 2: 
+Step 2: In your main class cpp file, include `markerAttributes.hpp` as here you will be using markerAttributs attrib() method.  
+Step 3: In your main class header file include `markerBuilder.hpp`, as here you will be defining your create() method.  
+Step 4: Change all the header files and source files include directory to your current directory.  
+
+That's all!
 
 ## Marker Usage
 
