@@ -9,6 +9,7 @@
 #include <vector>
 
 #include "rviz-basic-markers/markerBuilder.hpp"
+#include "rviz-basic-markers/markerAttributes.hpp"
 
 class marker_node
 {
