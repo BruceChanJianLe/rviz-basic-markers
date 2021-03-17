@@ -12,7 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 catkin_package(
-#  INCLUDE_DIRS include
+  INCLUDE_DIRS include
 #  LIBRARIES rviz-basic-markers
 #  CATKIN_DEPENDS roscpp rospy visualization_msgs
 #  DEPENDS system_lib
