@@ -155,4 +155,10 @@ class markerAttributes : public markerBuilder
             return *this;
         }
 
+        Self & points_clear()
+        {
+            marker_.points.clear();
+            return *this;
+        }
+
 };
