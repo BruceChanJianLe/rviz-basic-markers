@@ -374,3 +374,22 @@ string mesh_resource
 bool mesh_use_embedded_materials
 
 ```
+
+## Deleting All Markers
+
+```cpp
+// For markers array
+void remove_basic_markers()
+{
+  visualization_msgs::MarkerArray markers_msg;
+  visualization_msgs::Marker m;
+
+  m.action = visualization_msgs::Marker::DELETEALL;
+
+  markers_msg.markers.push_back(m);
+
+  marker_array_publisher_.publish(markers_msg);
+}
+```
+
+Reference: https://answers.ros.org/question/53595/clearing-all-markers-view-in-rviz-remotely/
